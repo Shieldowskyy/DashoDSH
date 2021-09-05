@@ -205,7 +205,7 @@ public final class DashoDSH extends JavaPlugin implements Listener {
             var lokablok = blok.getLocation();
 
            // var lokacja = Bukkit.getPlayer(args[0]).getLocation();
-           // do dodania: Jak jest argument to jebnij w określonego gracza
+           // TO DO: Jak jest argument to jebnij w określonego gracza
 
             swiat.strikeLightning(lokablok);
             sender.sendMessage(ChatColor.AQUA + "" + "Zeus się dobrze bawi chyba...");
