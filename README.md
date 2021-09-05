@@ -19,4 +19,4 @@ bałagan ale jak skończę pisać podstawowe funkcje to będę powoli sprzątał
 # Co możesz zrobić z kodem?
 
 Jeżeli także uczysz się programowania w Javie lub chcesz stworzyć swojego pierwszego plugina to możesz obejrzeć kod i zobaczyć jak plugin działa. Możesz także pobrać plugina
-na swój serwer i przetestować jego działanie. Celem tego repo jest aby każdy mógł łatwiej zobaczyć jak działają pluginy, nawet taki prosty jak ten.
+na swój serwer i przetestować jego działanie. Nie obrażę się także jeżeli skopiujesz cały kod i na nim będziesz uczyć się programowania (jednak miło by było jeżeli będę oznaczyny np. w opisie pluginu). Celem tego repo jest aby każdy mógł łatwiej zobaczyć jak działają pluginy, nawet tak proste jak ten!
