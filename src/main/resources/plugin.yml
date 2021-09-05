@@ -1,0 +1,49 @@
+name: DashoDSH
+version: '${project.version}'
+main: com.dasho.DashoDSH
+api-version: 1.17
+authors: [ Shieldowskyy ]
+description: Plugin stworzony na potrzebę serwera DSHcraft
+
+commands:
+  latanie:
+    description: Sprawdzanie czy gracz moze latac
+    permission: spigotplugin.example
+    usage: /<command>
+  jakiping:
+    description: Sprawdzanie jaki ma sie ping
+    permission: spigotplugin.example
+    usage: /<command>
+  setlatanie:
+    description: Ustawianie predkosci lotu gracza
+    permission: spigotplugin.example
+    usage: /<command> [float]
+  mobek:
+    description: Spawnuje okreslony w komendzie byt w lokalizacji gracza
+    permission: spigotplugin.example
+    usage: /<command> [NAZWAMOBA]
+  eksploduj:
+    description: Tworzy eksplozje w miejscu stania gracza
+    permission: spigotplugin.example
+    usage: /<command> [1-5 wielkość eksplozji]
+  dzien:
+    description: Zmienia czas na swiecie na Dzien
+    permission: spigotplugin.example
+    usage: /<command>
+  noc:
+    description: Zmienia czas na swiecie na Noc
+    permission: spigotplugin.example
+    usage: /<command>
+  setpvp:
+    description: Włącza lub wyłącza pvp w zależności od podanego argumentu
+    permission: spigotplugin.example
+    usage: /<command> [true/false]
+  piorun:
+    description: Uderza piorunem w blok w który celuje gracz
+    permission: spigotplugin.example
+    usage: /<command>
+  paczka:
+    description: Uderza piorunem w blok w który celuje gracz
+    permission: spigotplugin.example
+    usage: /<command> <gracz>
+
