@@ -12,6 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.awt.*;
 import java.util.logging.Level;
 
 public final class DashoDSH extends JavaPlugin implements Listener {
@@ -222,6 +223,10 @@ public final class DashoDSH extends JavaPlugin implements Listener {
             var swiat = gracz.getWorld();
 
             sender.sendMessage(ChatColor.AQUA + "" + "Status paczki zasobów gracza " + args[0] + " = " + osoba.hasResourcePack());
+
+            if (gracz.hasResourcePack()) {
+                gracz.kickPlayer("Paczki nie są dozwolone na tym serwerze");
+            }
 
             return true;
         }
