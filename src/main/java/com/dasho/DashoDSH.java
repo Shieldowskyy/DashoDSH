@@ -9,10 +9,12 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
-import java.awt.*;
+import java.util.Objects;
 import java.util.logging.Level;
 
 public final class DashoDSH extends JavaPlugin implements Listener {
@@ -25,6 +27,8 @@ public final class DashoDSH extends JavaPlugin implements Listener {
 
         FileConfiguration config = this.getConfig();
         config.addDefault("blokowacPaczki", false);
+        config.addDefault("wybuchPoZniszczeniuBloku", false);
+        config.addDefault("silaWybuchuPoZniszczeniuBloku", Float.valueOf(1));
         config.options().copyDefaults(true);
         saveConfig();
 
@@ -52,13 +56,14 @@ public final class DashoDSH extends JavaPlugin implements Listener {
 
     }
 
+
     @Override
     public void onDisable() {
         // Plugin shutdown logic
     }
 
 
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("latanie")) { // If the player typed /basic then do the following, note: If you only registered this executor for one command, you don't need this
             // doSomething
             Player gracz = (Player) sender;
@@ -174,22 +179,19 @@ public final class DashoDSH extends JavaPlugin implements Listener {
 
             swiat.setPVP(co);
 
-            if (args[0] == "true") {
+            if (Objects.equals(args[0], "true")) {
                 swiat.setPVP(true);
                 sender.sendMessage(ChatColor.AQUA + "" + "Pvp zostało wyłączone");
                 return true;
             }
-            if (args[0] == "false") {
+            if (Objects.equals(args[0], "false")) {
                 swiat.setPVP(false);
                 sender.sendMessage(ChatColor.AQUA + "" + "Pvp zostało włączone");
                 return true;
-            }
-            else {
-                sender.sendMessage(ChatColor.AQUA + "" + "Nieobsługiwany argument: "   + args + ". Obsługiwane argumenty: True, False.");
+            } else {
+                sender.sendMessage(ChatColor.AQUA + "" + "Nieobsługiwany argument: " + args + ". Obsługiwane argumenty: True, False.");
                 return false;
             }
-
-
 
 
         }
@@ -205,11 +207,19 @@ public final class DashoDSH extends JavaPlugin implements Listener {
 
             var lokablok = blok.getLocation();
 
-           // var lokacja = Bukkit.getPlayer(args[0]).getLocation();
-           // TO DO: Jak jest argument to jebnij w określonego gracza
+            // var lokacja = Bukkit.getPlayer(args[0]).getLocation();
+            // TO DO: Jak jest argument to jebnij w określonego gracza
 
             swiat.strikeLightning(lokablok);
             sender.sendMessage(ChatColor.AQUA + "" + "Zeus się dobrze bawi chyba...");
+
+            return true;
+        }
+
+        if (cmd.getName().equalsIgnoreCase("przeladuj")) { // If the player typed /basic then do the following, note: If you only registered this executor for one command, you don't need this
+            // doSomething
+
+            sender.sendMessage(ChatColor.AQUA + "" + "Aby przeładować config plugina DashoDSH musisz zrobić restart serwera! Jest to wymagane do prawidłowego działania plugina.");
 
             return true;
         }
@@ -219,8 +229,6 @@ public final class DashoDSH extends JavaPlugin implements Listener {
             Player gracz = (Player) sender;
 
             Player osoba = Bukkit.getPlayer(args[0]);
-
-            var swiat = gracz.getWorld();
 
             sender.sendMessage(ChatColor.AQUA + "" + "Status paczki zasobów gracza " + args[0] + " = " + osoba.hasResourcePack());
 
@@ -233,6 +241,22 @@ public final class DashoDSH extends JavaPlugin implements Listener {
 
         return true;
 
+    }
+
+    @EventHandler
+    public void jakZniszczyBlok(BlockBreakEvent event) {
+
+        FileConfiguration config = this.getConfig();
+
+        Float sila = Float.valueOf((1));
+
+        sila = (Float) config.get("silaWybuchuPoZniszczeniuBloku");
+        if (config.getBoolean("wybuchPoZniszczeniuBloku")) {
+            Player gracz = event.getPlayer();
+            gracz.getLocation().createExplosion(sila);
+
+
+        }
     }
 }
 
